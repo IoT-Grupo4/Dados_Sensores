@@ -60,7 +60,7 @@ class Sensor(object):
         makedirs(self.root, exist_ok=True)
         handler = logging.FileHandler('%s/%s.csv' % (self.root, self.log_file))
 
-        self.logger = logging.getLogger(__name__)
+        self.logger = logging.getLogger(self.name)
         self.logger.setLevel(logging.INFO)
 
         # define a logging format

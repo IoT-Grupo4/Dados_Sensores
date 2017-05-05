@@ -9,7 +9,7 @@ class LDRSensor(Sensor):
         super(LDRSensor, self).__init__(name='LDR')
         self.pin = pin
         self.ldr = LightSensor(self.pin)  # alter if using a different pin
-        ldr.wait_for_light(timeout=1)  # wait one second
+        self.ldr.wait_for_light(timeout=1)  # wait one second
 
     def __read__(self):
         return self.ldr.value

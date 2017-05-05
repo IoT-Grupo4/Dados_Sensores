@@ -11,9 +11,14 @@ class DHTSensor(Sensor):
 
     def __init__(self, sensor_type, pin):
         super(DHTSensor, self).__init__(name='DHT')
-        list_sensors = {'11': Adafruit_DHT.DHT11,
-                        '22': Adafruit_DHT.DHT22,
-                        '2302': Adafruit_DHT.AM2302}
+        list_sensors = {
+            '11': Adafruit_DHT.DHT11,
+            '22': Adafruit_DHT.DHT22,
+            '2302': Adafruit_DHT.AM2302,
+            11: Adafruit_DHT.DHT11,
+            22: Adafruit_DHT.DHT22,
+            2302: Adafruit_DHT.AM2302,
+        }
         if sensor_type in list_sensors.keys():
             self.sensor_type = list_sensors[sensor_type]
         else:
