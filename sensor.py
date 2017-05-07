@@ -26,6 +26,7 @@ class Sensor(object):
         else:
             self.root = path.dirname(path.abspath(__file__))
         self.logger = None
+        self.count = 0
 
     def read(self):
         value = self.__read__()
@@ -45,11 +46,14 @@ class Sensor(object):
             self.__build_logger__()
 
         if (type(message) == list) or (type(message) == tuple):
-            self.logger.info(
-                '{}'.format(self.delimiter).join(str(i) for i in message)
-            )
+            self.logger.info('{},'.format(self.count) +
+                             '{}'.format(self.delimiter).join(
+                                 str(i) for i in message)
+                             )
         else:
-            self.logger.info(message)
+            self.logger.info('{},{}'.format(self.count, message))
+
+        self.count += 1
 
     def __read__(self):
         raise NotImplemented('Method for read values not Implemented')
