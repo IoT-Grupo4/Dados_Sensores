@@ -25,16 +25,17 @@ class DHTSensor(Sensor):
             raise Exception('Sensor type not valid')
         self.pin = pin
 
-        self.humidity, self.temperature = Adafruit_DHT.read_retry(
-            sensor_type, pin)
-
     def read_temperature(self):
+        self.read()
         return self.temperature
 
     def read_humidity(self):
+        self.read()
         return self.humidity
 
     def __read__(self):
+        self.humidity, self.temperature = Adafruit_DHT.read_retry(
+            self.sensor_type, self.pin)
         return self.humidity, self.temperature
 
 
